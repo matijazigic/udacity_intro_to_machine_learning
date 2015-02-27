@@ -44,13 +44,37 @@ data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r")
 ### there's an outlier--remove it! 
 data_dict.pop("TOTAL", 0)
 
+max_exercised_stock_options = 0
+min_exercised_stock_options = float("inf")
+
+for key in data_dict:
+    if data_dict[key]["exercised_stock_options"] > 0 and data_dict[key]["exercised_stock_options"] != "NaN":
+        if  data_dict[key]["exercised_stock_options"] > max_exercised_stock_options:
+            max_exercised_stock_options = data_dict[key]["exercised_stock_options"]
+        if data_dict[key]["exercised_stock_options"] < min_exercised_stock_options:
+            min_exercised_stock_options = data_dict[key]["exercised_stock_options"]
+
+print min_exercised_stock_options, max_exercised_stock_options
+
+max_salary = 0
+min_salary = float("inf")
+
+for key in data_dict:
+    if data_dict[key]["salary"] > 0 and data_dict[key]["salary"] != "NaN":
+        if  data_dict[key]["salary"] > max_salary:
+            max_salary = data_dict[key]["salary"]
+        if data_dict[key]["salary"] < min_salary:
+            min_salary = data_dict[key]["salary"]
+
+print min_salary, max_salary
 
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
+feature_3 = "total_payments"
 poi  = "poi"
-features_list = [poi, feature_1, feature_2]
+features_list = [poi, feature_1, feature_2, feature_3]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
 
@@ -59,14 +83,14 @@ poi, finance_features = targetFeatureSplit( data )
 ### you'll want to change this line to 
 ### for f1, f2, _ in finance_features:
 ### (as it's currently written, line below assumes 2 features)
-for f1, f2 in finance_features:
+for f1, f2, _ in finance_features:
     plt.scatter( f1, f2 )
 plt.show()
 
 
 
 from sklearn.cluster import KMeans
-features_list = ["poi", feature_1, feature_2]
+#features_list = [poi, feature_1, feature_2, feature_3]
 data2 = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data2 )
 clf = KMeans(n_clusters=2)
