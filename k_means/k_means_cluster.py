@@ -97,6 +97,14 @@ clf = KMeans(n_clusters=2)
 pred = clf.fit_predict( finance_features )
 Draw(pred, finance_features, poi, name="clusters_before_scaling.pdf", f1_name=feature_1, f2_name=feature_2)
 
+# Rescale salary and exercised_stock_options
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+data3 = featureFormat(data_dict, [feature_1, feature_2])
+data3_scaled = scaler.fit_transform(data3)
+print scaler.transform([[200000.,1000000.]])
+
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
