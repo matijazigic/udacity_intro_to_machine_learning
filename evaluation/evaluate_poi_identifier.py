@@ -66,4 +66,4 @@ print "False Positives", false_positives
 print "False Negatives", false_negatives
 
 print "\nPrecision (POIs):", true_positives/(true_positives + false_positives)
-print "\nRecall (POIs)", true_positives/(true_positives + false_negatives)
+print "Recall (POIs)", true_positives/(true_positives + false_negatives)
