@@ -56,6 +56,10 @@ t1 = time()
 pred = clf.predict(features_test)
 print "predicting time:", round(time()-t1, 3), "s"
 
+print "10: ", pred[10]
+print "26: ", pred[26]
+print "50: ", pred[50]
+
 print clf.score(features_test, labels_test)
 
 chris = 0

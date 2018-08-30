@@ -80,6 +80,7 @@ print "Component 1", pca.explained_variance_ratio_[0]
 print "Component 2", pca.explained_variance_ratio_[1]
 print "done in %0.3fs" % (time() - t0)
 
+# transfer data back to shape of pictures
 eigenfaces = pca.components_.reshape((n_components, h, w))
 
 print "Projecting the input data on the eigenfaces orthonormal basis"
