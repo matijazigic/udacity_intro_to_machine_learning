@@ -1,4 +1,3 @@
-Intro to Machine learning - Udacity Course
-==============
+# Udacity - Intro to Machine Learning
 
-Mini-projects and problem sets
+Containing all solved assignments.
